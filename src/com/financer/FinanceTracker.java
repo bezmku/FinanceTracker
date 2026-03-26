@@ -21,6 +21,9 @@ public class FinanceTracker {
 
         return transactions;
     }
+    public boolean removeTransactionById(int id){
+        return transactions.removeIf(t->t.getId()==id);
+    }
     public double calculateBalance(){
         double balance=0;
         for(Transaction t : transactions){

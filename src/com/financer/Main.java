@@ -29,7 +29,8 @@ public class Main{
                     "3. view balance \n" +
                     "4. to search transaction by date range\n" +
                     "5. search transaction by catagory\n" +
-                    "6. to exit\n");
+                    "6. remove transaction by id\n"+
+                    "7. to exit\n");
             choice=InputValidator.validator("Enter choice: ","Invalid input",Integer.class,scanner);
             switch(choice){
                 case 1 :{
@@ -84,6 +85,20 @@ public class Main{
                     break;
                 }
                 case 6:{
+                    if(!tracker.getAllTransactions().isEmpty()){
+                        int idToDelete = InputValidator.validator("Enter ID of transaction to delete","Invalid ID",Integer.class,scanner);
+                        DatabaseHandler.deleteTransaction(idToDelete);
+                        boolean removed = tracker.removeTransactionById(idToDelete);
+                        if(removed){
+                            System.out.println("Transaction removed successfully.");
+                        }
+                        else System.out.println(" couldn't find transaction with the given id");
+                    }
+                    else System.out.println("no transaction to delete");
+                    System.out.println("------------------------------------");
+                    break;
+                }
+                case 7:{
                     System.out.println("Exiting....");
                     System.out.println("----------------------------------------");
                     exit(0);
