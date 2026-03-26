@@ -18,6 +18,17 @@ public class Transaction{
         this.amount = amount;
         this.date = date;
     }
+    public Transaction(int id,TransactionType type,Category category,double amount,LocalDate date){
+        this.id=id;
+        this.type = type;
+        this.category = category;
+        this.amount = amount;
+        this.date = date;
+
+        if(id>=idCounter){
+            idCounter=id+1;
+        }
+    }
 public int getId(){
         return id;
 }
