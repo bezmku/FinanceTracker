@@ -1,3 +1,5 @@
+//Run this one for console based manipulation of you transactions
+
 package com.financer;
 
 import com.db.DatabaseHandler;
@@ -28,16 +30,16 @@ public class Main{
                     "2. view all transactions\n " +
                     "3. view balance \n" +
                     "4. to search transaction by date range\n" +
-                    "5. search transaction by catagory\n" +
+                    "5. search transaction by category\n" +
                     "6. remove transaction by id\n"+
                     "7. to exit\n");
             choice=InputValidator.validator("Enter choice: ","Invalid input",Integer.class,scanner);
             switch(choice){
                 case 1 :{
                     System.out.println("-----Adding transaction...");
-                    TransactionType type = InputValidator.validator("Enter Transaction type(INCOME/EXPENSE): ","Invalid trasaction type",TransactionType.class,scanner);
-                    Category category = InputValidator.validator("Enter Transaction category(FOOD, TRANSPORT,SALARY,ENTERTAIMENT,RENT,OTHER): ","Invalid trasaction category",Category.class,scanner);
-                    double amount = InputValidator.validator("Enter amoutn of money: ","Invalid input",Double.class,scanner);
+                    TransactionType type = InputValidator.validator("Enter Transaction type(INCOME/EXPENSE): ","Invalid transaction type",TransactionType.class,scanner);
+                    Category category = InputValidator.validator("Enter Transaction category(FOOD, TRANSPORT,SALARY,ENTERTAINMENT,RENT,OTHER): ","Invalid transaction category",Category.class,scanner);
+                    double amount = InputValidator.validator("Enter amount of money: ","Invalid input",Double.class,scanner);
                     Transaction t = new Transaction(type, category, amount,LocalDate.now());
                     tracker.addTransaction(t);
                     System.out.println("transaction added");
@@ -73,7 +75,7 @@ public class Main{
                 }
                 case 5 : {
                     if(!tracker.getAllTransactions().isEmpty()){
-                        Category category = InputValidator.validator("Enter catogory(FOOD, TRANSPORT,SALARY,ENTERTAIMENT,RENT,OTHER): ","Invalid category",Category.class,scanner);
+                        Category category = InputValidator.validator("Enter category(FOOD, TRANSPORT,SALARY,ENTERTAINMENT,RENT,OTHER): ","Invalid category",Category.class,scanner);
                         List<Transaction> filtered = new ArrayList<>();
                         filtered = tracker.getTransactionByCategory(category);
                         if(!filtered.isEmpty()){
